@@ -8,7 +8,7 @@ class Player {
 		this.facingRight = true;
 		this.isRunning = false;
 		this.currentRunIndex = 0;
-		this.x = 100;
+		this.x = 300;
         this.y = 400;
 		this.playerImage = null;
 	}
@@ -28,17 +28,19 @@ class Player {
 			else {
 				this.moveLeft();
 			}
-			
+		}
+		else {
+			player.currentRunIndex = 0;
 		}
 	}
 	moveRight() {
 		console.log(this.x);
-		this.x += 1;
+		this.x += 5;
 		console.log(this.x);
 	}
 	moveLeft() {
 		console.log(this.x);
-		this.x -= 1;
+		this.x -= 5;
 		console.log(this.x);
 	}
 

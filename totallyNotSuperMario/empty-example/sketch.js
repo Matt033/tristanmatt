@@ -49,18 +49,42 @@ function draw() {
     // put drawing code here
     background(220);
     // translate(0,50);
-    image(MarioSpriteImage,
-        player.x,
-        player.y,
-        MarioDimensions.width,
-        MarioDimensions.height,
-        MovementDictionary.leftRun.col[player.currentRunIndex] * MarioDimensions.width,
-        MovementDictionary.rightRun.row * MarioDimensions.height,
-        MarioDimensions.width,
-        MarioDimensions.height
-        );
+    // image(MarioSpriteImage,
+    //     player.x,
+    //     player.y,
+    //     MarioDimensions.width,
+    //     MarioDimensions.height,
+    //     MovementDictionary.leftRun.col[player.currentRunIndex] * MarioDimensions.width,
+    //     MovementDictionary.rightRun.row * MarioDimensions.height,
+    //     MarioDimensions.width,
+    //     MarioDimensions.height
+    //     );
     // image(MarioSpriteImage, 100, 100);
 
+    if (player.facingRight == true) {
+        image(MarioSpriteImage, 
+            player.x,
+            player.y,
+            MarioDimensions.width,
+            MarioDimensions.height,
+            MovementDictionary.rightRun.col[player.currentRunIndex] * MarioDimensions.width,
+            MovementDictionary.rightRun.row * MarioDimensions.height,
+            MarioDimensions.width,
+            MarioDimensions.height
+            );
+    }		
+    else {
+        image(MarioSpriteImage,
+            player.x,
+            player.y,
+            MarioDimensions.width,
+            MarioDimensions.height,
+            MovementDictionary.leftRun.col[player.currentRunIndex] * MarioDimensions.width,
+            MovementDictionary.rightRun.row * MarioDimensions.height,
+            MarioDimensions.width,
+            MarioDimensions.height
+            );
+    }
     player.Show();
     player.Update();
     // player.move();
@@ -84,37 +108,27 @@ function draw() {
 function keyPressed() {
     switch(keyCode) {
         case RIGHT_ARROW:
+            console.log("right arrow pressed");
             player.facingRight = true;
             player.isRunning = true;
+            break;
         case LEFT_ARROW:
+            console.log("left arrow pressed");
             player.facingRight = false;
             player.isRunning = true;
+            break;
     }
 }
 function keyReleased() {
     switch(keyCode) {
         case RIGHT_ARROW:
+            console.log("right arrow released");
             player.isRunning = false;
+            break;
         case LEFT_ARROW:
+            console.log("left arrow released");
             player.isRunning = false;
+            break;
     }
 }
 
-
-// class Player {
-//     constructor() {
-//         this.hitBoxWidth = 100;
-//         this.hitBoxHeight = 100;
-//         this.x = 100;
-//         this.y = 400;
-//     }
-//     show() {
-//         console.log("showing");
-//         // push();
-//         image(playerImage, this.x, this.y, this.hitBoxHeight, this.hitBoxWidth);
-//         // pop();
-//     }
-//     move() {
-//         this.x += 1;
-//     }
-// }
