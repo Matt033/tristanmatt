@@ -48,25 +48,14 @@ function draw() {
     // console.log("Drawing");
     // put drawing code here
     background(220);
-    // translate(0,50);
-    // image(MarioSpriteImage,
-    //     player.x,
-    //     player.y,
-    //     MarioDimensions.width,
-    //     MarioDimensions.height,
-    //     MovementDictionary.leftRun.col[player.currentRunIndex] * MarioDimensions.width,
-    //     MovementDictionary.rightRun.row * MarioDimensions.height,
-    //     MarioDimensions.width,
-    //     MarioDimensions.height
-    //     );
-    // image(MarioSpriteImage, 100, 100);
 
+    // scale(2);
     if (player.facingRight == true) {
         image(MarioSpriteImage, 
             player.x,
             player.y,
-            MarioDimensions.width,
-            MarioDimensions.height,
+            MarioDimensions.width * 2,
+            MarioDimensions.height * 2,
             MovementDictionary.rightRun.col[player.currentRunIndex] * MarioDimensions.width,
             MovementDictionary.rightRun.row * MarioDimensions.height,
             MarioDimensions.width,
@@ -77,8 +66,8 @@ function draw() {
         image(MarioSpriteImage,
             player.x,
             player.y,
-            MarioDimensions.width,
-            MarioDimensions.height,
+            MarioDimensions.width * 2,
+            MarioDimensions.height * 2,
             MovementDictionary.leftRun.col[player.currentRunIndex] * MarioDimensions.width,
             MovementDictionary.leftRun.row * MarioDimensions.height,
             MarioDimensions.width,

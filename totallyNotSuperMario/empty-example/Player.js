@@ -57,30 +57,30 @@ class Player {
 			if (this.currentRunIndex >= 3) {
 				this.currentRunIndex = 0;
 			}
-			if (this.facingRight == true) {
-				return image(MarioSpriteImage, 
-					this.x,
-					this.y,
-					MarioDimensions.width,
-					MarioDimensions.height,
-					MovementDictionary.rightRun.col[this.currentRunIndex] * MarioDimensions.width,
-					MovementDictionary.rightRun.row * MarioDimensions.height,
-					MarioDimensions.width,
-					MarioDimensions.height
-					);
-			}		
-			if (this.facingRight == false) {
-				return image(MarioSpriteImage,
-					this.x,
-					this.y,
-					MarioDimensions.width,
-					MarioDimensions.height,
-					MovementDictionary.leftRun.col[this.currentRunIndex] * MarioDimensions.width,
-					MovementDictionary.rightRun.row * MarioDimensions.height,
-					MarioDimensions.width,
-					MarioDimensions.height
-					);
-			}
+			// if (this.facingRight == true) {
+			// 	image(MarioSpriteImage, 
+			// 		this.x,
+			// 		this.y,
+			// 		MarioDimensions.width,
+			// 		MarioDimensions.height,
+			// 		MovementDictionary.rightRun.col[this.currentRunIndex] * MarioDimensions.width,
+			// 		MovementDictionary.rightRun.row * MarioDimensions.height,
+			// 		MarioDimensions.width,
+			// 		MarioDimensions.height
+			// 		);
+			// }		
+			// if (this.facingRight == false) {
+			// 	image(MarioSpriteImage,
+			// 		this.x,
+			// 		this.y,
+			// 		MarioDimensions.width,
+			// 		MarioDimensions.height,
+			// 		MovementDictionary.leftRun.col[this.currentRunIndex] * MarioDimensions.width,
+			// 		MovementDictionary.rightRun.row * MarioDimensions.height,
+			// 		MarioDimensions.width,
+			// 		MarioDimensions.height
+			// 		);
+			// }
 		}
 
 	}
