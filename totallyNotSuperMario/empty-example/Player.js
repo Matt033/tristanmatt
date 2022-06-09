@@ -1,6 +1,7 @@
 // this all seems to work when the player code and class definition is in
 // sketch.js but not when its in another file.
 
+
 class Player {
 	constructor() {
 		let MarioDimensions = {
@@ -36,15 +37,22 @@ class Player {
 		this.facingRight = true;
 		this.isRunning = false;
 		this.currentRunIndex = 0;
+		this.x = 100;
+        this.y = 400;
+		this.playerImage = null;
 	}
 	show() {
 		console.log("showing");
 		// push();
-		image(playerImage, this.x, this.y, this.hitBoxHeight, this.hitBoxWidth);
+		image(playerImage, this.x, this.y, this.MarioDimensions[width], this.MarioDimensions[height]);
 		// pop();
 	}
 	move() {
 		this.x += 1;
+	}
+
+	preload(){
+		playerImage = loadImage('./Images/MarioSprite_34x38.png');
 	}
 	
 	// the sprite sheet is only one sheet so you have to define the 
