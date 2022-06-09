@@ -1,10 +1,12 @@
 // let playerImage = null;
 let player = null;
 let playerImage = null;
+let MarioSpriteImage;
+
 
 function preload() {
     console.log("Preloading");
-    playerImage = loadImage('idle.png');
+    MarioSpriteImage = loadImage('./Images/MarioSprite_34x38.png');
 }
 
 function setup() {
@@ -20,11 +22,11 @@ function draw() {
     // translate(0,50);
     player.show();
     player.move();
-    ellipse(mouseX, height/2, 20, 20);
+    ellipse(mouseX, height / 2, 20, 20);
 
     // player.Update();
     // image(playerImage, x, 400, 100, 100);
-    
+
 
     // push();
 
@@ -35,22 +37,21 @@ function draw() {
     // }
     // ellipse(mouseX, mouseY, 80, 80);
     // pop();
-    
 }
-class Player {
-    constructor() {
-        this.hitBoxWidth = 100;
-        this.hitBoxHeight = 100;
-        this.x = 100;
-        this.y = 400;
-    }
-    show() {
-        console.log("showing");
-        // push();
-        image(playerImage, this.x, this.y, this.hitBoxHeight, this.hitBoxWidth);
-        // pop();
-    }
-    move() {
-        this.x += 1;
-    }
-}
+// class Player {
+//     constructor() {
+//         this.hitBoxWidth = 100;
+//         this.hitBoxHeight = 100;
+//         this.x = 100;
+//         this.y = 400;
+//     }
+//     show() {
+//         console.log("showing");
+//         // push();
+//         image(playerImage, this.x, this.y, this.hitBoxHeight, this.hitBoxWidth);
+//         // pop();
+//     }
+//     move() {
+//         this.x += 1;
+//     }
+// }
