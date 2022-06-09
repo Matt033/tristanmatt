@@ -80,7 +80,7 @@ function draw() {
             MarioDimensions.width,
             MarioDimensions.height,
             MovementDictionary.leftRun.col[player.currentRunIndex] * MarioDimensions.width,
-            MovementDictionary.rightRun.row * MarioDimensions.height,
+            MovementDictionary.leftRun.row * MarioDimensions.height,
             MarioDimensions.width,
             MarioDimensions.height
             );
