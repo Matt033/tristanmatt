@@ -2,38 +2,9 @@
 // sketch.js but not when its in another file.
 
 
+
 class Player {
 	constructor() {
-		let MarioDimensions = {
-			width: 34,
-			height: 38
-		};
-		let MovementDictionary = {
-			standRight: {
-				row: 2, 
-				col: 1
-			},
-			standLeft: {
-				row: 1, 
-				col: 1
-			},
-			leftRun: {
-				row: 1,
-				col: [1, 0, 2]  
-			},
-			rightRun: {
-				row: 2,
-				col: [1, 0, 2]
-			},
-			rightJump: {
-				row: 2, 
-				col: [3, 4, 5]
-			},
-			leftJump: {
-				row: 1,
-				col: [3, 4, 5]
-			}
-		};
 		this.facingRight = true;
 		this.isRunning = false;
 		this.currentRunIndex = 0;
@@ -41,14 +12,34 @@ class Player {
         this.y = 400;
 		this.playerImage = null;
 	}
-	show() {
-		console.log("showing");
+	Show() {
+		// console.log("showing" + MarioDimensions.width);
+		
 		// push();
-		image(playerImage, this.x, this.y, this.MarioDimensions[width], this.MarioDimensions[height]);
+		this.getImageToUse();
+		// image(playerImage, this.x, this.y, MarioDimensions.width, MarioDimensions.height);
 		// pop();
 	}
-	move() {
+	Update() {
+		if (this.isRunning == true) {
+			if (this.facingRight == true) {
+				this.moveRight();	
+			}
+			else {
+				this.moveLeft();
+			}
+			
+		}
+	}
+	moveRight() {
+		console.log(this.x);
 		this.x += 1;
+		console.log(this.x);
+	}
+	moveLeft() {
+		console.log(this.x);
+		this.x -= 1;
+		console.log(this.x);
 	}
 
 	preload(){
@@ -66,6 +57,10 @@ class Player {
 			}
 			if (this.facingRight == true) {
 				return image(MarioSpriteImage, 
+					this.x,
+					this.y,
+					MarioDimensions.width,
+					MarioDimensions.height,
 					MovementDictionary.rightRun.col[this.currentRunIndex] * MarioDimensions.width,
 					MovementDictionary.rightRun.row * MarioDimensions.height,
 					MarioDimensions.width,
@@ -74,6 +69,10 @@ class Player {
 			}		
 			if (this.facingRight == false) {
 				return image(MarioSpriteImage,
+					this.x,
+					this.y,
+					MarioDimensions.width,
+					MarioDimensions.height,
 					MovementDictionary.leftRun.col[this.currentRunIndex] * MarioDimensions.width,
 					MovementDictionary.rightRun.row * MarioDimensions.height,
 					MarioDimensions.width,

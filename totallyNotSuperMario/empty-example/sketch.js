@@ -2,7 +2,36 @@
 let player = null;
 let playerImage = null;
 let MarioSpriteImage;
-
+let MarioDimensions = {
+	width: 34,
+	height: 38
+};
+let MovementDictionary = {
+	standRight: {
+		row: 2, 
+		col: 1
+	},
+	standLeft: {
+		row: 1, 
+		col: 1
+	},
+	leftRun: {
+		row: 1,
+		col: [1, 0, 2]  
+	},
+	rightRun: {
+		row: 2,
+		col: [1, 0, 2]
+	},
+	rightJump: {
+		row: 2, 
+		col: [3, 4, 5]
+	},
+	leftJump: {
+		row: 1,
+		col: [3, 4, 5]
+	}
+};
 
 function preload() {
     console.log("Preloading");
@@ -20,8 +49,21 @@ function draw() {
     // put drawing code here
     background(220);
     // translate(0,50);
-    player.show();
-    player.move();
+    image(MarioSpriteImage,
+        player.x,
+        player.y,
+        MarioDimensions.width,
+        MarioDimensions.height,
+        MovementDictionary.leftRun.col[player.currentRunIndex] * MarioDimensions.width,
+        MovementDictionary.rightRun.row * MarioDimensions.height,
+        MarioDimensions.width,
+        MarioDimensions.height
+        );
+    // image(MarioSpriteImage, 100, 100);
+
+    player.Show();
+    player.Update();
+    // player.move();
     ellipse(mouseX, height / 2, 20, 20);
 
     // player.Update();
@@ -38,6 +80,27 @@ function draw() {
     // ellipse(mouseX, mouseY, 80, 80);
     // pop();
 }
+
+function keyPressed() {
+    switch(keyCode) {
+        case RIGHT_ARROW:
+            player.facingRight = true;
+            player.isRunning = true;
+        case LEFT_ARROW:
+            player.facingRight = false;
+            player.isRunning = true;
+    }
+}
+function keyReleased() {
+    switch(keyCode) {
+        case RIGHT_ARROW:
+            player.isRunning = false;
+        case LEFT_ARROW:
+            player.isRunning = false;
+    }
+}
+
+
 // class Player {
 //     constructor() {
 //         this.hitBoxWidth = 100;
