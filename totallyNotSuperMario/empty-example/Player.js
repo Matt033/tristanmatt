@@ -2,53 +2,46 @@
 // sketch.js but not when its in another file.
 
 
+
 class Player {
 	constructor() {
-		let MarioDimensions = {
-			width: 34,
-			height: 38
-		};
-		let MovementDictionary = {
-			standRight: {
-				row: 2, 
-				col: 1
-			},
-			standLeft: {
-				row: 1, 
-				col: 1
-			},
-			leftRun: {
-				row: 1,
-				col: [1, 0, 2]  
-			},
-			rightRun: {
-				row: 2,
-				col: [1, 0, 2]
-			},
-			rightJump: {
-				row: 2, 
-				col: [3, 4, 5]
-			},
-			leftJump: {
-				row: 1,
-				col: [3, 4, 5]
-			}
-		};
 		this.facingRight = true;
 		this.isRunning = false;
 		this.currentRunIndex = 0;
-		this.x = 100;
+		this.x = 300;
         this.y = 400;
 		this.playerImage = null;
 	}
-	show() {
-		console.log("showing");
+	Show() {
+		// console.log("showing" + MarioDimensions.width);
+		
 		// push();
-		image(playerImage, this.x, this.y, this.MarioDimensions[width], this.MarioDimensions[height]);
+		this.getImageToUse();
+		// image(playerImage, this.x, this.y, MarioDimensions.width, MarioDimensions.height);
 		// pop();
 	}
-	move() {
-		this.x += 1;
+	Update() {
+		if (this.isRunning == true) {
+			if (this.facingRight == true) {
+				this.moveRight();	
+			}
+			else {
+				this.moveLeft();
+			}
+		}
+		else {
+			player.currentRunIndex = 0;
+		}
+	}
+	moveRight() {
+		console.log(this.x);
+		this.x += 5;
+		console.log(this.x);
+	}
+	moveLeft() {
+		console.log(this.x);
+		this.x -= 5;
+		console.log(this.x);
 	}
 
 	preload(){
@@ -64,22 +57,30 @@ class Player {
 			if (this.currentRunIndex >= 3) {
 				this.currentRunIndex = 0;
 			}
-			if (this.facingRight == true) {
-				return image(MarioSpriteImage, 
-					MovementDictionary.rightRun.col[this.currentRunIndex] * MarioDimensions.width,
-					MovementDictionary.rightRun.row * MarioDimensions.height,
-					MarioDimensions.width,
-					MarioDimensions.height
-					);
-			}		
-			if (this.facingRight == false) {
-				return image(MarioSpriteImage,
-					MovementDictionary.leftRun.col[this.currentRunIndex] * MarioDimensions.width,
-					MovementDictionary.rightRun.row * MarioDimensions.height,
-					MarioDimensions.width,
-					MarioDimensions.height
-					);
-			}
+			// if (this.facingRight == true) {
+			// 	image(MarioSpriteImage, 
+			// 		this.x,
+			// 		this.y,
+			// 		MarioDimensions.width,
+			// 		MarioDimensions.height,
+			// 		MovementDictionary.rightRun.col[this.currentRunIndex] * MarioDimensions.width,
+			// 		MovementDictionary.rightRun.row * MarioDimensions.height,
+			// 		MarioDimensions.width,
+			// 		MarioDimensions.height
+			// 		);
+			// }		
+			// if (this.facingRight == false) {
+			// 	image(MarioSpriteImage,
+			// 		this.x,
+			// 		this.y,
+			// 		MarioDimensions.width,
+			// 		MarioDimensions.height,
+			// 		MovementDictionary.leftRun.col[this.currentRunIndex] * MarioDimensions.width,
+			// 		MovementDictionary.rightRun.row * MarioDimensions.height,
+			// 		MarioDimensions.width,
+			// 		MarioDimensions.height
+			// 		);
+			// }
 		}
 
 	}
