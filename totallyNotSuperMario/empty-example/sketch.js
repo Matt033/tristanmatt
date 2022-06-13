@@ -40,42 +40,54 @@ function preload() {
 
 function setup() {
     // put setup code here
+    bg = loadImage('./Images/mariobackgroundsized.jpg');
     createCanvas(1200, 950);
+
     player = new Player();
 }
 let x = 0;
 function draw() {
     // console.log("Drawing");
     // put drawing code here
-    background(220);
+    // background(220);
+    background(bg);
+    
+    line(0,475,1200,475);
+
 
     // scale(2);
-    if (player.facingRight == true) {
-        image(MarioSpriteImage, 
-            player.x,
-            player.y,
-            MarioDimensions.width * 2,
-            MarioDimensions.height * 2,
-            MovementDictionary.rightRun.col[player.currentRunIndex] * MarioDimensions.width,
-            MovementDictionary.rightRun.row * MarioDimensions.height,
-            MarioDimensions.width,
-            MarioDimensions.height
-            );
-    }		
-    else {
-        image(MarioSpriteImage,
-            player.x,
-            player.y,
-            MarioDimensions.width * 2,
-            MarioDimensions.height * 2,
-            MovementDictionary.leftRun.col[player.currentRunIndex] * MarioDimensions.width,
-            MovementDictionary.leftRun.row * MarioDimensions.height,
-            MarioDimensions.width,
-            MarioDimensions.height
-            );
+    if(!playerIsJumping()){
+        if (player.facingRight == true) {
+            image(MarioSpriteImage, 
+                player.x,
+                player.y,
+                MarioDimensions.width * 2,
+                MarioDimensions.height * 2,
+                MovementDictionary.rightRun.col[player.currentRunIndex] * MarioDimensions.width,
+                MovementDictionary.rightRun.row * MarioDimensions.height,
+                MarioDimensions.width,
+                MarioDimensions.height
+                );
+        }		
+        else {
+            image(MarioSpriteImage,
+                player.x,
+                player.y,
+                MarioDimensions.width * 2,
+                MarioDimensions.height * 2,
+                MovementDictionary.leftRun.col[player.currentRunIndex] * MarioDimensions.width,
+                MovementDictionary.leftRun.row * MarioDimensions.height,
+                MarioDimensions.width,
+                MarioDimensions.height
+                );
+        }
+    }
+    else{
+        console.log("player is jumping");
     }
     player.Show();
     player.Update();
+    this.gravity();
     // player.move();
     ellipse(mouseX, height / 2, 20, 20);
 
@@ -106,6 +118,10 @@ function keyPressed() {
             player.facingRight = false;
             player.isRunning = true;
             break;
+        case UP_ARROW:
+            console.log("up arrow pressed");
+
+        
     }
 }
 function keyReleased() {
@@ -118,6 +134,55 @@ function keyReleased() {
             console.log("left arrow released");
             player.isRunning = false;
             break;
+    }
+}
+
+function gravity(){
+    player.velocity += player.gravity;
+    player.y += player.velocity;
+
+
+    if(player.y > 400){
+        player.velocity = 0;
+        player.y = 400;
+        if(keyIsDown(UP_ARROW)){
+            player.velocity += player.opposing;
+            
+            if(player.facingRight == true){
+                image(MarioSpriteImage, 
+                    player.x,
+                    player.y,
+                    MarioDimensions.width * 2,
+                    MarioDimensions.height * 2,
+                    MovementDictionary.rightJump.col[player.currentRunIndex] * MarioDimensions.width,
+                    MovementDictionary.rightJump.row * MarioDimensions.height,
+                    MarioDimensions.width,
+                    MarioDimensions.height
+                    );
+            }
+            else{
+                image(MarioSpriteImage, 
+                    player.x,
+                    player.y,
+                    MarioDimensions.width * 2,
+                    MarioDimensions.height * 2,
+                    MovementDictionary.leftJump.col[player.currentRunIndex] * MarioDimensions.width,
+                    MovementDictionary.leftJump.row * MarioDimensions.height,
+                    MarioDimensions.width,
+                    MarioDimensions.height
+                    );
+
+            }
+        }
+    }
+}
+
+function playerIsJumping(){
+    if(player.y > 405){
+        return true;
+    }
+    else{
+        return false;
     }
 }
 

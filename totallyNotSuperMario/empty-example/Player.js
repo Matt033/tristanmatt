@@ -11,6 +11,12 @@ class Player {
 		this.x = 300;
         this.y = 400;
 		this.playerImage = null;
+
+		//Matt's attempt at gravity
+		this.velocity = 0;
+		this.gravity = 0.3;
+		this.opposing = -10;
+
 	}
 	Show() {
 		// console.log("showing" + MarioDimensions.width);
